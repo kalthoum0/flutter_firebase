@@ -1,0 +1,7 @@
+{
+  "loginTitle": "Login Page",
+  "emailLabel": "Email Address",
+  "passwordLabel": "Password",
+  "signUpButton": "Sign Up",
+  "successMessage": "User created successfully!"
+}

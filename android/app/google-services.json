@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "619052069020",
+    "project_id": "second-login-ap",
+    "storage_bucket": "second-login-ap.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:619052069020:android:e2fc1bd01b3dbb92e27d59",
+        "android_client_info": {
+          "package_name": "com.example.second_attempt"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBAkQhDbVF5mGxcdchU-sgfK6iaTXUh2l8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
