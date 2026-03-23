@@ -119,6 +119,12 @@ abstract class AppLocalizations {
   /// **'Sign Up'**
   String get signUpButton;
 
+  /// No description provided for @loginButton.
+  ///
+  /// In en, this message translates to:
+  /// **'Login'**
+  String get loginButton;
+
   /// No description provided for @successMessage.
   ///
   /// In en, this message translates to:

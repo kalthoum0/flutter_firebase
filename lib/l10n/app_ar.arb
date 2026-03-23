@@ -3,5 +3,6 @@
   "emailLabel": "البريد الإلكتروني",
   "passwordLabel": "كلمة المرور",
   "signUpButton": "إنشاء حساب",
+  "loginButton": "تسجيل دخول",
   "successMessage": "تم إنشاء المستخدم بنجاح!"
 }

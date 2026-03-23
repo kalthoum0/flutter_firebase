@@ -21,5 +21,8 @@ class AppLocalizationsEn extends AppLocalizations {
   String get signUpButton => 'Sign Up';
 
   @override
+  String get loginButton => 'Login';
+
+  @override
   String get successMessage => 'User created successfully!';
 }

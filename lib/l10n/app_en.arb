@@ -3,5 +3,6 @@
   "emailLabel": "Email Address",
   "passwordLabel": "Password",
   "signUpButton": "Sign Up",
+  "loginButton": "Login",
   "successMessage": "User created successfully!"
 }
