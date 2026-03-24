@@ -4,15 +4,19 @@ import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:screentasia/screentasia.dart';
 import 'package:second_attempt/Home.dart';
-import 'package:second_attempt/feature/login/data/repositories/auth_repository_impl.dart';
-import 'package:second_attempt/feature/login/data/sources/auth_remote_data_source.dart';
-import 'package:second_attempt/feature/login/domain/usecases/signUp_usecase.dart';
-import 'package:second_attempt/feature/login/presentation/bloc/auth_bloc.dart';
-import 'package:second_attempt/feature/login/presentation/bloc/language_bloc.dart';
-import 'package:second_attempt/feature/login/presentation/page/login.dart';
+import 'package:second_attempt/core/extensions/router/router.dart';
+import 'package:second_attempt/feature/Auth/data/repositories/auth_repository_impl.dart';
+import 'package:second_attempt/feature/Auth/data/sources/auth_remote_data_source.dart';
+import 'package:second_attempt/feature/Auth/domain/usecases/login_usecase.dart';
+import 'package:second_attempt/feature/Auth/domain/usecases/signUp_usecase.dart';
+import 'package:second_attempt/feature/Auth/presentation/bloc/auth_bloc.dart';
+import 'package:second_attempt/core/localization/presentation/bloc/language_bloc.dart';
+import 'package:second_attempt/feature/Auth/presentation/page/login.dart';
+import 'package:second_attempt/feature/StartUp/presentation/pages/startUp.dart';
 import 'package:second_attempt/l10n/app_localizations.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+final appRouter = AppRouter();
 class MyApp extends StatelessWidget {
   final Locale? locale;
   const MyApp({this.locale, super.key});
@@ -22,13 +26,21 @@ class MyApp extends StatelessWidget {
     return MultiBlocProvider(
       providers: [
         BlocProvider(create: (context) => LanguageBloc()),
-        BlocProvider(create: (context) => AuthBloc(SignupUseCase(
-          AuthRepositoryImpl(AuthRemoteDataSource())
-        )))
+        BlocProvider(create: (context) => 
+          AuthBloc(
+            SignupUseCase(
+              AuthRepositoryImpl(AuthRemoteDataSource())
+            ),
+            LoginUseCase(
+              AuthRepositoryImpl(AuthRemoteDataSource())
+            )
+          )
+        )
       ],
       child: BlocBuilder<LanguageBloc, LanguageState>(
         builder: (context, state) {
-          return MaterialApp(
+          return MaterialApp.router(
+             routerConfig: appRouter.config(),
             localizationsDelegates: const [
               AppLocalizations.delegate, // Your generated translations
               GlobalMaterialLocalizations.delegate, // Standard Flutter buttons
@@ -132,7 +144,7 @@ class MyApp extends StatelessWidget {
                 ),
               ),
             ),
-            home: LoginPage(),
+            
             // MyHomePage(title: 'Flutter Demo Home Page'),
           );
         },

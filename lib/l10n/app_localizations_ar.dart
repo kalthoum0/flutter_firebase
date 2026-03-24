@@ -12,6 +12,9 @@ class AppLocalizationsAr extends AppLocalizations {
   String get loginTitle => 'صفحة تسجيل الدخول';
 
   @override
+  String get signUpTitle => 'صفحة إنشاء حساب';
+
+  @override
   String get emailLabel => 'البريد الإلكتروني';
 
   @override

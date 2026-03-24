@@ -1,7 +1,7 @@
 import 'package:bloc/bloc.dart';
 import 'package:meta/meta.dart';
-import 'package:second_attempt/feature/login/domain/usecases/login_usecase.dart';
-import 'package:second_attempt/feature/login/domain/usecases/signUp_usecase.dart';
+import 'package:second_attempt/feature/Auth/domain/usecases/login_usecase.dart';
+import 'package:second_attempt/feature/Auth/domain/usecases/signUp_usecase.dart';
 
 
 part 'auth_event.dart';
@@ -19,6 +19,16 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
         emit(AuthSuccess()); // Navigate to next screen
       } catch (e) {
         emit(AuthFailure(e.toString())); // Show error snackbar
+      }
+    });
+
+    on<LoginSubmitted>((event, emit) async{
+      emit(AuthLoading());
+      try{
+        await loginUseCase(event.email,event.password);
+        emit(AuthSuccess());
+      } catch(e){
+        emit (AuthFailure(e.toString()));
       }
     });
   }

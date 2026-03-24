@@ -1,5 +1,5 @@
-import 'package:second_attempt/feature/login/data/sources/auth_remote_data_source.dart';
-import 'package:second_attempt/feature/login/domain/repositories/auth_repository.dart';
+import 'package:second_attempt/feature/Auth/data/sources/auth_remote_data_source.dart';
+import 'package:second_attempt/feature/Auth/domain/repositories/auth_repository.dart';
 
 class AuthRepositoryImpl implements AuthRepository {
   final AuthRemoteDataSource remoteDataSource;

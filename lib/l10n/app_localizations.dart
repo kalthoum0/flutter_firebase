@@ -101,6 +101,12 @@ abstract class AppLocalizations {
   /// **'Login Page'**
   String get loginTitle;
 
+  /// No description provided for @signUpTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Sign Up Page'**
+  String get signUpTitle;
+
   /// No description provided for @emailLabel.
   ///
   /// In en, this message translates to:

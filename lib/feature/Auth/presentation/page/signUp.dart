@@ -1,15 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:screentasia/screentasia.dart';
-import 'package:second_attempt/feature/login/presentation/bloc/auth_bloc.dart';
-import 'package:second_attempt/feature/login/presentation/bloc/language_bloc.dart';
+import 'package:second_attempt/feature/Auth/presentation/bloc/auth_bloc.dart';
+import 'package:second_attempt/core/localization/presentation/bloc/language_bloc.dart';
 import 'package:second_attempt/l10n/app_localizations.dart';
 import 'package:second_attempt/widgets/gradiant_btn.dart';
 import 'package:second_attempt/widgets/text.dart';
 import 'package:second_attempt/widgets/text_feild.dart';
-
-class LoginPage extends StatelessWidget {
-  const LoginPage({super.key});
+import 'package:auto_route/auto_route.dart';
+@RoutePage()
+class SignupPage extends StatelessWidget {
+  const SignupPage({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -17,6 +18,7 @@ class LoginPage extends StatelessWidget {
     final l10n = AppLocalizations.of(context)!;
     final TextEditingController emailController = TextEditingController();
     final TextEditingController passwordController = TextEditingController();
+    final TextEditingController confirmPasswordController = TextEditingController();
     return Container(
       decoration: BoxDecoration(
         gradient: LinearGradient(
@@ -31,6 +33,9 @@ class LoginPage extends StatelessWidget {
       child: Scaffold(
         appBar: AppBar(
           backgroundColor: Colors.transparent,
+          leading: IconButton(onPressed: context.back, 
+          icon: Icon(Icons.arrow_back_ios,
+          color: theme.colorScheme.secondaryFixed,)),
           actions: [
             Padding(
               padding: const EdgeInsets.all(8.0),
@@ -58,7 +63,7 @@ class LoginPage extends StatelessWidget {
           padding: EdgeInsets.all(1.wp),
           child: Center(
             child: Container(
-              height: 50.hp,
+              height: 60.hp,
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(2.wp),
                 color: theme.colorScheme.background,
@@ -95,7 +100,7 @@ class LoginPage extends StatelessWidget {
                       child: CustomeText(
                         size: 14,
                         themeStyle: theme.textTheme.titleMedium,
-                        text: l10n.loginTitle,
+                        text: l10n.signUpTitle,
                         color: Colors.white,
                       ),
                     ),
@@ -145,6 +150,17 @@ class LoginPage extends StatelessWidget {
                         color: theme.colorScheme.secondary,
                       ),
                     ),
+                    SizedBox(height: 2.hp),
+                    Customtextfeild(
+                      controller: confirmPasswordController,
+                      keyboardType: TextInputType.visiblePassword,
+                      textInputAction: TextInputAction.next,
+                      // suffixIcon: Icon(
+                      //   Icons.visibility_outlined,
+                      //   size: 2.wp,
+                      //   color: theme.colorScheme.secondary,
+                      // ),
+                    ),
                     SizedBox(height: 5.hp),
 
                     BlocConsumer<AuthBloc, AuthState>(
@@ -160,8 +176,14 @@ class LoginPage extends StatelessWidget {
                         if (state is AuthLoading) return CircularProgressIndicator();
                         return GradientButton(
                           ontap: () {
+                            if(passwordController.text != confirmPasswordController.text){
+                              ScaffoldMessenger.of(context).showSnackBar(
+                                SnackBar(content: Text('Passwords do not match!'))
+                              );
+                              return;
+                            }
                             context.read<AuthBloc>().add(
-                              SignUpSubmitted(emailController.text, passwordController.text));
+                              SignUpSubmitted(emailController.text, passwordController.text));                            
                           },
                           text: CustomeText(
                             text: l10n.signUpButton,
