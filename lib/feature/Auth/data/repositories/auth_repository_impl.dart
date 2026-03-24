@@ -8,6 +8,7 @@ class AuthRepositoryImpl implements AuthRepository {
 
   @override
   Future<void> signUpUser(String email, String password) async {
+    
     await remoteDataSource.signUp(email, password);
   }
 
