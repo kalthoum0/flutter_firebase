@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:second_attempt/feature/Auth/data/sources/auth_remote_data_source.dart';
 import 'package:second_attempt/feature/Auth/domain/repositories/auth_repository.dart';
 
@@ -7,14 +8,23 @@ class AuthRepositoryImpl implements AuthRepository {
   AuthRepositoryImpl(this.remoteDataSource);
 
   @override
-  Future<void> signUpUser(String email, String password) async {
-    
-    await remoteDataSource.signUp(email, password);
+
+  Future<User?> signUpUser(String name, String email, String password) async {
+    return await remoteDataSource.signUp(name, email, password);
   }
 
   @override
-  Future<void> logInUser(String email, String password) async {
-    // We call the method we just created in the RemoteDataSource
-    await remoteDataSource.logIn(email, password);
+  Future<User?> logInUser(String email, String password) async {
+    return await remoteDataSource.logIn(email, password);
+  }
+
+  @override
+  User? getCurrentUser() {
+    return remoteDataSource.currentUser;
+  }
+
+  @override
+  Future<void> logOut() async {
+    await remoteDataSource.logOut();
   }
 }

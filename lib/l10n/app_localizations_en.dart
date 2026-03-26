@@ -15,6 +15,9 @@ class AppLocalizationsEn extends AppLocalizations {
   String get signUpTitle => 'Sign Up Page';
 
   @override
+  String get userName => 'Name';
+
+  @override
   String get emailLabel => 'Email Address';
 
   @override

@@ -1,6 +1,7 @@
 {
   "loginTitle": "صفحة تسجيل الدخول",
   "signUpTitle": "صفحة إنشاء حساب",
+  "userName": "الاسم",
   "emailLabel": "البريد الإلكتروني",
   "passwordLabel": "كلمة المرور",
   "signUpButton": "إنشاء حساب",

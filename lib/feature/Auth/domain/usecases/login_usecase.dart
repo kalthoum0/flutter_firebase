@@ -1,3 +1,5 @@
+import 'package:firebase_auth/firebase_auth.dart';
+
 import '../repositories/auth_repository.dart';
 
 class LoginUseCase {
@@ -9,7 +11,7 @@ class LoginUseCase {
 
   // The 'call' method is a special Dart function that makes 
   // instances of this class callable like a standard function.
-  Future<void> call(String email, String password) async {
+  Future<User?> call(String email, String password) async {
     return await repository.logInUser(email, password);
   }
 }

@@ -7,8 +7,9 @@ import 'package:second_attempt/Home.dart';
 import 'package:second_attempt/core/extensions/router/router.dart';
 import 'package:second_attempt/feature/Auth/data/repositories/auth_repository_impl.dart';
 import 'package:second_attempt/feature/Auth/data/sources/auth_remote_data_source.dart';
+import 'package:second_attempt/feature/Auth/domain/repositories/auth_repository.dart';
 import 'package:second_attempt/feature/Auth/domain/usecases/login_usecase.dart';
-import 'package:second_attempt/feature/Auth/domain/usecases/signUp_usecase.dart';
+import 'package:second_attempt/feature/Auth/domain/usecases/signup_usecase.dart';
 import 'package:second_attempt/feature/Auth/presentation/bloc/auth_bloc.dart';
 import 'package:second_attempt/core/localization/presentation/bloc/language_bloc.dart';
 import 'package:second_attempt/feature/Auth/presentation/page/login.dart';
@@ -24,17 +25,24 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MultiBlocProvider(
+      
       providers: [
         BlocProvider(create: (context) => LanguageBloc()),
-        BlocProvider(create: (context) => 
+        BlocProvider(create: (context) {
+          final authRepo = AuthRepositoryImpl(AuthRemoteDataSource());
+          return          
           AuthBloc(
             SignupUseCase(
               AuthRepositoryImpl(AuthRemoteDataSource())
             ),
             LoginUseCase(
               AuthRepositoryImpl(AuthRemoteDataSource())
+            ),
+            AuthRepositoryImpl (
+              AuthRemoteDataSource ()
             )
-          )
+          )..add(AuthCheckRequested());
+        }
         )
       ],
       child: BlocBuilder<LanguageBloc, LanguageState>(

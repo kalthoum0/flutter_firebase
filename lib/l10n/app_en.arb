@@ -1,6 +1,7 @@
 {
   "loginTitle": "Login Page",
   "signUpTitle": "Sign Up Page",
+  "userName": "Name",
   "emailLabel": "Email Address",
   "passwordLabel": "Password",
   "signUpButton": "Sign Up",
